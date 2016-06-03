@@ -1,4 +1,4 @@
-/* 
+/*
  * 'interject': interject for a moment
  * Copyright (C) 2016 Alexei Frolov
  *
@@ -161,14 +161,14 @@ void usage(char *s, FILE *f)
 	fprintf(f, "usage: %s [OPTION]... [SYSTEM]\n", s);
 	fprintf(f, "interject that SYSTEM is really GNU/SYSTEM\n\n");
 	fprintf(f, "\t--description=DESC\n\t\tLinux is the kernel: DESC\n");
-	fprintf(f, "\t--defined=DEF\n\t\tfully functioning OS as defined by DEF\n");
+	fprintf(f, "\t--defined=DEF\n\t\tfull OS as defined by DEF\n");
 	fprintf(f, "\t--developed=DEV\n\t\tthe GNU system, developed by DEV\n");
 	fprintf(f, "\t--gnu=GNU\n\t\tset the proper system prefix\n");
 	fprintf(f, "\t-h, --head\n\t\tprint only the first sentence\n");
 	fprintf(f, "\t-H, --help\n\t\tdisplay this help text and exit\n");
 	fprintf(f, "\t--kernel=KERN\n\t\tLinux is the KERN\n");
 	fprintf(f, "\t--operating=OPER\n\t\tLinux is not an OPER unto itself\n");
-	fprintf(f, "\t--os=OS\n\t\ta complete OS as defined by\n");
+	fprintf(f, "\t--os=OSYS\n\t\tcomrpising a full OSYS as defined by\n");
 	fprintf(f, "\t--useful=USE\n\t\tfully functioning GNU system made "
 			"useful by the USE\n");
 	fprintf(f, "\t-v, --version\n\t\tdisplay version information and exit\n");
