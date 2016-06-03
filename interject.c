@@ -104,9 +104,9 @@ int main(int argc, char **argv)
 		}
 	}
 	if (optind != argc) {
-		if (optind == argc - 1)
+		if (optind == argc - 1) {
 			linux = argv[optind];
-		else {
+		} else {
 			usage(argv[0], stderr);
 			return EXIT_FAILURE;
 		}
