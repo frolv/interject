@@ -1,6 +1,6 @@
 /*
  * 'interject': interject for a moment
- * Copyright (C) 2016 Alexei Frolov
+ * Copyright (C) 2016-2017 Alexei Frolov
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -88,7 +88,7 @@ int main(int argc, char **argv)
 			useful = optarg;
 			break;
 		case 'v':
-			printf("%s v0.1.0\nCopyright (C) 2016 Alexei Frolov\n"
+			printf("%s v0.1.0\nCopyright (C) 2016-2017 Alexei Frolov\n"
 					"This program is distributed as free "
 					"software under the\nterms of the GNU "
 					"General Public License, version 3\n",
