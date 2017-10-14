@@ -21,25 +21,27 @@
 #include <getopt.h>
 
 /* the name of the program */
-static char *PROG_NAME = "interject";
+static const char *PROG_NAME = "interject";
 
 /* all modifiable components */
-static char *linux = "Linux";
-static char *gnu = "GNU";
-static char *operating = "operating system";
-static char *useful = "GNU corelibs, shell utilities and vital system components";
-static char *os = "OS";
-static char *defined = "POSIX";
-static char *developed = "GNU Project";
-static char *kernel = "kernel";
-static char *description = "the program in the system that allocates the "
-		"machine's resources to the other programs that you run";
+static const char *osname = "Linux";
+static const char *gnu = "GNU";
+static const char *operating = "operating system";
+static const char *useful = "GNU corelibs, shell utilities and vital "
+                            "system components";
+static const char *os = "OS";
+static const char *defined = "POSIX";
+static const char *developed = "GNU Project";
+static const char *kernel = "kernel";
+static const char *description = "the program in the system that allocates the "
+                                 "machine's resources to the other programs "
+                                 "that you run";
 
 static int head = 0;
 
-void interject();
-int isvowel(char c);
-void usage(char *s, FILE *f);
+static void interject(void);
+static int isvowel(char c);
+static void usage(const char *s, FILE *f);
 
 int main(int argc, char **argv)
 {
@@ -58,6 +60,7 @@ int main(int argc, char **argv)
 		{ "version", no_argument, 0, 'v' },
 		{ 0, 0, 0, 0 }
 	};
+
 	while ((c = getopt_long(argc, argv, "hvH", long_opts, NULL)) != EOF) {
 		switch (c) {
 		case 'c':
@@ -88,11 +91,11 @@ int main(int argc, char **argv)
 			useful = optarg;
 			break;
 		case 'v':
-			printf("%s v0.1.0\nCopyright (C) 2016-2017 Alexei Frolov\n"
-					"This program is distributed as free "
-					"software under the\nterms of the GNU "
-					"General Public License, version 3\n",
-					PROG_NAME);
+			printf("%s v0.1.0\nCopyright (C) 2016 Alexei Frolov\n"
+			                "This program is distributed as free "
+			                "software under the\nterms of the GNU "
+			                "General Public License, version 3\n",
+			                PROG_NAME);
 			return EXIT_SUCCESS;
 		case 'H':
 			usage(PROG_NAME, stdout);
@@ -104,7 +107,7 @@ int main(int argc, char **argv)
 	}
 	if (optind != argc) {
 		if (optind == argc - 1) {
-			linux = argv[optind];
+			osname = argv[optind];
 		} else {
 			usage(argv[0], stderr);
 			return EXIT_FAILURE;
@@ -116,47 +119,49 @@ int main(int argc, char **argv)
 }
 
 /* interject for a moment */
-void interject()
+static void interject(void)
 {
 	printf("I'd just like to interject for a moment. What you're ");
-	printf("referring to as %s, is in fact, %s/%s, ", linux, gnu, linux);
+	printf("referring to as %s, is in fact, %s/%s, ", osname, gnu, osname);
 	printf("or as I've recently taken to calling it, %s plus %s. ",
-			gnu, linux);
+	       gnu, osname);
+
 	if (head)
 		return;
-	printf("%s is not a%s %s unto itself ", linux,
-			isvowel(operating[0]) ? "n" : "", operating);
+
+	printf("%s is not a%s %s unto itself ", osname,
+	       isvowel(operating[0]) ? "n" : "", operating);
 	printf("but rather another free component of a fully functioning "
-			"%s system made useful by the %s ", gnu, useful);
+	       "%s system made useful by the %s ", gnu, useful);
 	printf("comprising a full %s as defined by %s. ", os, defined);
 
 	printf("Many computer users run a modified version of the %s system "
-			"every day, without realizing it. ", gnu);
+	       "every day, without realizing it. ", gnu);
 	printf("Through a peculiar turn of events, the version of %s which is "
-			"widely used today is often called \"%s\"", gnu, linux);
+	       "widely used today is often called \"%s\"", gnu, osname);
 	printf(", and many of its users are not aware that it is basically the "
-			"%s system, developed by the %s. ", gnu, developed);
+	       "%s system, developed by the %s. ", gnu, developed);
 
 	printf("There really is a %s, and these people are using it, but it is "
-			"just a part of the system they use. ", linux);
-	printf("%s is the %s: %s. ", linux, kernel, description);
+	       "just a part of the system they use. ", osname);
+	printf("%s is the %s: %s. ", osname, kernel, description);
 	printf("The %s is an essential part of a%s %s, ", kernel,
-			isvowel(operating[0]) ? "n" : "", operating);
+	       isvowel(operating[0]) ? "n" : "", operating);
 	printf("but useless by itself; it can only function within the "
-			"context of a complete %s. ", operating);
+	       "context of a complete %s. ", operating);
 	printf("%s is normally used in combination with the %s %s: the whole "
-			"system is basically %s with %s added, or %s/%s", linux,
-			gnu, operating, gnu, linux, gnu, linux);
+	       "system is basically %s with %s added, or %s/%s", osname,
+	       gnu, operating, gnu, osname, gnu, osname);
 	printf(". All these so-called \"%s\" distributions are really "
-			"distributions of %s/%s.", linux, gnu, linux);
+	       "distributions of %s/%s.", osname, gnu, osname);
 }
 
-int isvowel(char c)
+static int isvowel(char c)
 {
 	return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u';
 }
 
-void usage(char *s, FILE *f)
+static void usage(const char *s, FILE *f)
 {
 	fprintf(f, "usage: %s [OPTION]... [SYSTEM]\n", s);
 	fprintf(f, "interject that SYSTEM is really GNU/SYSTEM\n\n");
@@ -170,6 +175,6 @@ void usage(char *s, FILE *f)
 	fprintf(f, "\t--operating=OPER\n\t\tLinux is not an OPER unto itself\n");
 	fprintf(f, "\t--os=OSYS\n\t\tcomrpising a full OSYS as defined by\n");
 	fprintf(f, "\t--useful=USE\n\t\tfully functioning GNU system made "
-			"useful by the USE\n");
+	        "useful by the USE\n");
 	fprintf(f, "\t-v, --version\n\t\tdisplay version information and exit\n");
 }
